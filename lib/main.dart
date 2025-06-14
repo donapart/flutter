@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ar_flutter_plugin/ar_flutter_plugin.dart';
+import 'package:ar_flutter_plugin/managers/ar_session_manager.dart';
+import 'package:ar_flutter_plugin/managers/ar_object_manager.dart';
+import 'package:ar_flutter_plugin/managers/ar_anchor_manager.dart';
+import 'package:ar_flutter_plugin/managers/ar_location_manager.dart';
+import 'package:ar_flutter_plugin/datatypes/config_planedetection.dart';
+
 import 'services/detection_service.dart';
 import 'widgets/edge_menu.dart';
 
@@ -36,6 +43,11 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   late final AnimationController _leftMenuController;
   late final AnimationController _rightMenuController;
 
+  ARSessionManager? _arSessionManager;
+  ARObjectManager? _arObjectManager;
+  ARAnchorManager? _arAnchorManager;
+  ARLocationManager? _arLocationManager;
+
   @override
   void initState() {
     super.initState();
@@ -53,6 +65,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   void dispose() {
     _leftMenuController.dispose();
     _rightMenuController.dispose();
+    _arSessionManager?.dispose();
     super.dispose();
   }
 
@@ -72,14 +85,35 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     }
   }
 
+  void _onARViewCreated(
+    ARSessionManager arSessionManager,
+    ARObjectManager arObjectManager,
+    ARAnchorManager arAnchorManager,
+    ARLocationManager arLocationManager,
+  ) {
+    _arSessionManager = arSessionManager;
+    _arObjectManager = arObjectManager;
+    _arAnchorManager = arAnchorManager;
+    _arLocationManager = arLocationManager;
+
+    _arSessionManager!.onInitialize(
+      showFeaturePoints: false,
+      showPlanes: true,
+      planeDetectionConfig: PlaneDetectionConfig.horizontalAndVertical,
+    );
+    _arObjectManager!.onInitialize();
+  }
+
   @override
   Widget build(BuildContext context) {
     final detection = context.watch<DetectionService>();
     return Scaffold(
       body: Stack(
         children: [
-          // Placeholder for AR view & camera feed
-          Container(color: Colors.black),
+          ARView(
+            onARViewCreated: _onARViewCreated,
+            planeDetectionConfig: PlaneDetectionConfig.horizontalAndVertical,
+          ),
           // Edge menus
           EdgeMenu(
             alignment: Alignment.centerLeft,
