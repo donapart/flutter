@@ -1,0 +1,13 @@
+# Flutter build outputs
+build/
+# Linux build artifacts
+build_artifacts/
+# Dart/Flutter dependencies
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
+# IDE settings
+.idea/
+.vscode/
