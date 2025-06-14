@@ -6,7 +6,7 @@
     - name: Build Flutter linux image
       community.docker.docker_image:
         build:
-          path: ../docker
+          path: "{{ playbook_dir }}/../docker"
         name: edge_ar_builder
         tag: latest
     - name: Run build container
