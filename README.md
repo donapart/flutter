@@ -86,3 +86,14 @@ flutter run
 ```
 
 Die App öffnet die Kamera und stellt ein AR-Overlay mit menügesteuerten Erkennungsfunktionen bereit. Die einzelnen Funktionen lassen sich über die seitlichen Bedienfelder aktivieren.
+
+Weitere Details finden Sie in [docs/DOKUMENTATION.md](docs/DOKUMENTATION.md).
+### Linux-Build mit Docker und Ansible
+
+Mit dem bereitgestellten Playbook `ansible/build-linux.yml` kann ein Linux-Release in einem Docker-Container erstellt werden. Voraussetzungen sind eine lauffähige Docker- und Ansible-Installation. Der Build wird wie folgt angestoßen:
+
+```bash
+ansible-playbook ansible/build-linux.yml
+```
+
+Das Playbook verwendet das Dockerfile unter `docker/` und legt die fertigen Artefakte im Verzeichnis `build_artifacts/` ab.
