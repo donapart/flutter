@@ -86,3 +86,5 @@ flutter run
 ```
 
 Die App öffnet die Kamera und stellt ein AR-Overlay mit menügesteuerten Erkennungsfunktionen bereit. Die einzelnen Funktionen lassen sich über die seitlichen Bedienfelder aktivieren.
+
+Weitere Details finden Sie in [docs/DOKUMENTATION.md](docs/DOKUMENTATION.md).
