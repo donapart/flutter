@@ -97,3 +97,7 @@ ansible-playbook ansible/build-linux.yml
 ```
 
 Das Playbook verwendet das Dockerfile unter `docker/` und legt die fertigen Artefakte im Verzeichnis `build_artifacts/` ab.
+
+## Lizenz
+
+Diese Software steht unter der MIT-Lizenz. Siehe [LICENSE](LICENSE) für Details.
