@@ -75,3 +75,11 @@ Testen der Genauigkeit der Erkennungsfunktion
 Überprüfung der plattformübergreifenden Kompatibilität
 Überwachung des Batterieverbrauchs
 Leistungsbenchmarking
+
+## Setup
+
+1. Install Flutter SDK and ensure `flutter` is on your PATH.
+2. Run `flutter pub get` to fetch dependencies.
+3. Use `flutter run` to start the application on a device or simulator.
+
+This project contains a minimal implementation of an edge-based UI with AR integration. The main features can be found in `lib/main.dart`.
