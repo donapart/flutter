@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Build Flutter linux image
+      community.docker.docker_image:
+        build:
+          path: "{{ playbook_dir }}/../docker"
+        name: edge_ar_builder
+        tag: latest
+    - name: Run build container
+      community.docker.docker_container:
+        name: edge_ar_build
+        image: edge_ar_builder:latest
+        state: started
+        volumes:
+          - "{{ playbook_dir }}/../:/app"
+        command: flutter build linux --release
+    - name: Copy build artifacts
+      ansible.builtin.fetch:
+        src: ../build/linux/x64/release/bundle
+        dest: ../build_artifacts/
+        flat: yes
