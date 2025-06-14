@@ -75,3 +75,14 @@ Testen der Genauigkeit der Erkennungsfunktion
 Überprüfung der plattformübergreifenden Kompatibilität
 Überwachung des Batterieverbrauchs
 Leistungsbenchmarking
+
+## Projekt starten
+
+Dieses Repository enthält ein minimales Flutter-Projekt. Zum Ausführen der Anwendung ist eine lokale Flutter-Installation erforderlich.
+
+```bash
+flutter pub get
+flutter run
+```
+
+Die App öffnet die Kamera und stellt ein AR-Overlay mit menügesteuerten Erkennungsfunktionen bereit. Die einzelnen Funktionen lassen sich über die seitlichen Bedienfelder aktivieren.
